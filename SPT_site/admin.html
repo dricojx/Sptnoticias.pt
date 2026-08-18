@@ -6,29 +6,28 @@
   <title>Painel de Edição Central — SPT</title>
   
   <!-- Estilos oficiais do painel -->
-  <link rel="stylesheet" href="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.css" />
+  <link rel="stylesheet" href="https://unpkg.com@^3.0.0/dist/decap-cms.css" />
 
   <script>
-    // 1. AVISO IMPORTANTE AO DECAP: Ativar inicialização manual ANTES de carregar o script
     window.CMS_MANUAL_INIT = true;
   </script>
 </head>
 <body>
 
-  <!-- 2. Contentor obrigatório onde o painel se vai desenhar com segurança -->
   <div id="nc-root"></div>
 
-  <!-- 3. Carregar o script oficial do Decap CMS -->
-  <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
+  <!-- Script oficial do Decap CMS -->
+  <script src="https://unpkg.com@^3.0.0/dist/decap-cms.js"></script>
 
   <script>
-    // 4. INJETAR OS TEUS CAMPOS GIGANTES DE NOTÍCIAS NO MOTOR DO PORTAL
     window.CMS.init({
       config: {
         backend: {
           name: "github",
           repo: "dricojx/Sptnoticias.pt",
-          branch: "main"
+          branch: "main",
+          // SOLUÇÃO DIRECTA: Usamos o método implícito que abre o login direto na tua conta do GitHub
+          auth_type: "implicit" 
         },
         media_folder: "spt_site/imagens",
         public_folder: "imagens",
