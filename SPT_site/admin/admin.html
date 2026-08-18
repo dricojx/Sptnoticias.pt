@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="pt-PT">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Painel de Edição Central — SPT</title>
+  
+  <!-- Estilos oficiais do painel -->
+  <link rel="stylesheet" href="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.css" />
+
+  <script>
+    // 1. AVISO IMPORTANTE AO DECAP: Ativar inicialização manual ANTES de carregar o script
+    window.CMS_MANUAL_INIT = true;
+  </script>
+</head>
+<body>
+
+  <!-- 2. Contentor obrigatório onde o painel se vai desenhar com segurança -->
+  <div id="nc-root"></div>
+
+  <!-- 3. Carregar o script oficial do Decap CMS -->
+  <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
+
+  <script>
+    // 4. INJETAR OS TEUS CAMPOS GIGANTES DE NOTÍCIAS NO MOTOR DO PORTAL
+    window.CMS.init({
+      config: {
+        backend: {
+          name: "github",
+          repo: "dricojx/Sptnoticias.pt",
+          branch: "main"
+        },
+        media_folder: "spt_site/imagens",
+        public_folder: "imagens",
+        collections: [{
+          name: "noticias",
+          label: "Notícias SPT",
+          folder: "spt_site/conteudo/noticias",
+          create: true,
+          slug: "{{year}}-{{month}}-{{day}}-{{slug}}",
+          fields: [
+            { label: "Título da Notícia", name: "title", widget: "string" },
+            { label: "Categoria", name: "categoria", widget: "select", options: ["País", "Mundo", "Desporto", "Cultura", "Tecnologia"] },
+            { label: "Hora de Exibição", name: "tempo_publicacao", widget: "string", default: "Hoje · 12:00" },
+            { label: "Imagem de Destaque", name: "imagem_url", widget: "image" },
+            { label: "Corpo da Notícia", name: "body", widget: "markdown" }
+          ]
+        }]
+      }
+    });
+  </script>
+</body>
+</html>
