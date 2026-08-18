@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="pt-PT">
+<head>
+    <meta charset="UTF-8">
+    <title>Painel de Edição Especial — SPT</title>
+    <!-- Carrega o editor visual do TinaCMS direto da internet -->
+    <script src="https://tina.io"></script>
+</head>
+<body>
+    <div id="tina-admin-portal"></div>
+    <script>
+        // Configuração para o Tina criar o teu formulário sozinho
+        TinaCMS.init({
+            clientId: "COLA_AQUI_O_TEU_CLIENT_ID_DO_TINA_CLOUD",
+            token: "COLA_AQUI_O_TEU_TOKEN_DO_TINA_CLOUD",
+            branch: "main",
+            collections: [{
+                label: "Notícias SPT",
+                name: "noticias",
+                path: "conteudo/noticias", // As notícias vão ser gravadas nesta pasta
+                format: "json",
+                fields: [
+                    { type: "string", name: "titulo", label: "Título da Notícia", required: true },
+                    { type: "string", name: "categoria", label: "Categoria", options: ["País", "Mundo", "Desporto", "Cultura"] },
+                    { type: "string", name: "tempo_publicacao", label: "Hora de Exibição (Ex: Hoje · 15:30)" },
+                    { type: "image", name: "imagem_url", label: "Imagem de Destaque" },
+                    { type: "rich-text", name: "conteudo", label: "Corpo da Notícia" }
+                ]
+            }]
+        });
+    </script>
+</body>
+</html>
