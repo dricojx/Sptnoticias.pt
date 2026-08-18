@@ -5,31 +5,23 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Painel de Edição Central — SPT</title>
   
-  <!-- LINKS CORRIGIDOS E REAIS: Carrega o visual e os estilos do programa -->
-  <link rel="stylesheet" href="https://jsdelivr.net" />
-  
-  <script>
-    // Ativa a inicialização manual antes de carregar o programa
-    window.CMS_MANUAL_INIT = true;
-  </script>
+  <!-- Estilos oficiais estáveis que abrem sempre -->
+  <link rel="stylesheet" href="https://unpkg.com" />
 </head>
 <body>
 
-  <!-- Contentor onde o ecrã do painel vai nascer -->
-  <div id="nc-root"></div>
-
-  <!-- LINK CORRIGIDO E REAL: Carrega o motor do programa Decap CMS -->
-  <script src="https://jsdelivr.net"></script>
+  <!-- O script agora é carregado com a configuração correta -->
+  <script src="https://unpkg.com"></script>
 
   <script>
-    window.CMS.init({
+    // Inicia o painel diretamente sem depender de travas de ecrã
+    CMS.init({
       config: {
         backend: {
           name: "github",
           repo: "dricojx/Sptnoticias.pt",
           branch: "main",
           auth_type: "implicit",
-          // O teu Client ID real inserido no campo correto do Decap CMS
           app_id: "Ov23litHsFVmgnDwMHkA"
         },
         media_folder: "spt_site/imagens",
