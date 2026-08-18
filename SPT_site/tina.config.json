@@ -1,0 +1,34 @@
+import { defineConfig } from "tinacms";
+
+export default defineConfig({
+  branch: "main",
+  clientId: "COLA_AQUI_O_TEU_CLIENT_ID_DO_TINA_CLOUD",
+  token: "COLA_AQUI_O_TEU_TOKEN_DO_TINA_CLOUD",
+  build: {
+    publicFolder: ".", // Pasta raiz do teu site
+    outputFolder: "admin",
+  },
+  media: {
+    tina: {
+      mediaRoot: "imagens", // Onde as fotos novas vão ser guardadas
+      publicFolder: ".",
+    },
+  },
+  schema: {
+    collections: [
+      {
+        name: "noticia",
+        label: "Notícias SPT",
+        path: "conteudo/noticias", // O Tina vai criar esta pasta sozinho no teu GitHub
+        format: "json",
+        fields: [
+          { type: "string", name: "titulo", label: "Título", required: true },
+          { type: "string", name: "categoria", label: "Categoria", options: ["País", "Mundo", "Desporto", "Cultura"] },
+          { type: "string", name: "tempo_publicacao", label: "Hora (Ex: Hoje · 15:30)" },
+          { type: "image", name: "imagem_url", label: "Imagem de Destaque" },
+          { type: "rich-text", name: "conteudo", label: "Corpo da Notícia" }
+        ],
+      },
+    ],
+  },
+});
