@@ -5,12 +5,22 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Painel de Edição Central — SPT</title>
   
+  <!-- LINKS CORRIGIDOS E REAIS: Carrega o visual e os estilos do programa -->
   <link rel="stylesheet" href="https://jsdelivr.net" />
-  <script>window.CMS_MANUAL_INIT = true;</script>
+  
+  <script>
+    // Ativa a inicialização manual antes de carregar o programa
+    window.CMS_MANUAL_INIT = true;
+  </script>
 </head>
 <body>
+
+  <!-- Contentor onde o ecrã do painel vai nascer -->
   <div id="nc-root"></div>
+
+  <!-- LINK CORRIGIDO E REAL: Carrega o motor do programa Decap CMS -->
   <script src="https://jsdelivr.net"></script>
+
   <script>
     window.CMS.init({
       config: {
@@ -19,8 +29,8 @@
           repo: "dricojx/Sptnoticias.pt",
           branch: "main",
           auth_type: "implicit",
-          // CORRIGIDO: Coloca o teu Client ID da aplicação do GitHub aqui para o botão saber para onde ir
-          app_id: "Ov23litHsFVmgnDwMHkA" 
+          // O teu Client ID real inserido no campo correto do Decap CMS
+          app_id: "Ov23litHsFVmgnDwMHkA"
         },
         media_folder: "spt_site/imagens",
         public_folder: "imagens",
