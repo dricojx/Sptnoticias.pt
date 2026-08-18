@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="pt-PT">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Central de Redação Profissional — SPT</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&display=swap" rel="stylesheet">
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Inter', sans-serif; background-color: #0b0f17; color: #f0f3f6; min-height: 100vh; display: flex; }
+    .container { display: flex; width: 100vw; height: 100vh; }
+    .sidebar { width: 340px; background-color: #121824; border-right: 1px solid #1f293d; padding: 40px 30px; display: flex; flex-direction: column; gap: 30px; }
+    .logo h2 { font-size: 22px; font-weight: 900; color: #ffffff; letter-spacing: -1px; }
+    .logo span { font-size: 11px; color: #0757ff; font-weight: 700; letter-spacing: 2px; display: block; margin-top: 5px; }
+    .status-box { background: #1a2233; padding: 20px; border-radius: 8px; border: 1px solid #24324d; font-size: 14px; }
+    .status-box p { margin-bottom: 10px; color: #94a3b8; }
+    .status-box strong { color: #34c759; }
+    .main-content { flex: 1; background-color: #0f141c; padding: 50px 60px; overflow-y: auto; display: flex; flex-direction: column; gap: 35px; }
+    .header h1 { font-size: 32px; font-weight: 900; color: #ffffff; }
+    .header p { color: #64748b; font-size: 15px; margin-top: 5px; }
+    form { display: flex; flex-direction: column; gap: 25px; }
+    .field { display: flex; flex-direction: column; gap: 10px; }
+    label { font-size: 12px; font-weight: 800; color: #94a3b8; letter-spacing: 1px; text-transform: uppercase; }
+    input[type="text"], select, textarea { background: #121824; border: 2px solid #1f293d; color: #ffffff; padding: 16px; font-size: 16px; border-radius: 8px; font-family: inherit; width: 100%; transition: all 0.2s; }
+    input[type="text"]:focus, select:focus, textarea:focus { outline: none; border-color: #0757ff; box-shadow: 0 0 10px rgba(7, 87, 255, 0.2); }
+    textarea { min-height: 200px; resize: vertical; line-height: 1.6; }
+    .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 25px; }
+    .btn-submit { background: #0757ff; color: #ffffff; font-size: 18px; font-weight: 700; padding: 20px; border: none; border-radius: 8px; cursor: pointer; width: 100%; box-shadow: 0 6px 20px rgba(7, 87, 255, 0.3); transition: all 0.2s; margin-top: 10px; }
+    .btn-submit:hover { background: #0044cc; box-shadow: 0 10px 25px rgba(7, 87, 255, 0.5); transform: translateY(-2px); }
+    .sucesso-msg { background: #132d21; border: 1px solid #236343; color: #52d68c; padding: 20px; border-radius: 8px; display: none; margin-bottom: 20px; font-size: 15px; line-height: 1.5; }
+    .sucesso-msg a { color: #ffffff; font-weight: 700; text-decoration: underline; cursor: pointer; }
+  </style>
+</head>
+<body>
+
+<div class="container">
+  <aside class="sidebar">
+    <div class="logo">
+      <h2>SPT NEWSROOM</h2>
+      <span>SISTEMA INDEPENDENTE</span>
+    </div>
+    <div class="status-box">
+      <p><strong>Painel:</strong> PRONTO</p>
+      <p><strong>Modo:</strong> Direto sem Bloqueios</p>
+      <p><strong>CORS Status:</strong> Ignorado</p>
+    </div>
+  </aside>
+
+  <main class="main-content">
+    <div class="header">
+      <h1>Publicar Nova Notícia</h1>
+      <p>Este painel gera o ficheiro correto sem ecrãs brancos e sem falhas de login externos.</p>
+    </div>
+
+    <div id="msg-sucesso" class="sucesso-msg">
+      <strong>Notícia Gerada com Sucesso!</strong><br>
+      O ficheiro <strong>noticia.json</strong> foi descarregado automático. Para publicar no teu site, basta arrastares este ficheiro para dentro da pasta <strong>spt_site/conteudo/noticias</strong> no teu GitHub e fazeres o Deploy na Vercel!
+    </div>
+
+    <form id="form-noticia-direto">
+      <div class="field">
+        <label for="titulo">Título da Notícia (Manchete)</label>
+        <input type="text" id="titulo" placeholder="Introduz o título com impacto..." required>
+      </div>
+
+      <div class="grid-2">
+        <div class="field">
+          <label for="categoria">Categoria</label>
+          <select id="categoria">
+            <option value="País">País</option>
+            <option value="Mundo">Mundo</option>
+            <option value="Desporto">Desporto</option>
+            <option value="Cultura">Cultura</option>
+            <option value="Tecnologia">Tecnologia</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="tempo_publicacao">Hora de Exibição</label>
+          <input type="text" id="tempo_publicacao" placeholder="Ex: Hoje · 19:42" required>
+        </div>
+      </div>
+
+      <div class="field">
+        <label for="imagem_url">Link da Imagem (URL público ou Unsplash)</label>
+        <input type="text" id="imagem_url" placeholder="https://images.unsplash.com/..." required>
+      </div>
+
+      <div class="field">
+        <label for="conteudo">Corpo da Notícia</label>
+        <textarea id="conteudo" placeholder="Começa a escrever o texto completo do teu artigo aqui..." required></textarea>
+      </div>
+
+      <button type="submit" class="btn-submit">⚡ GERAR E DESCARREGAR FICHEIRO DA NOTÍCIA</button>
+    </form>
+  </main>
+</div>
+
+<script>
+  document.getElementById('form-noticia-direto').addEventListener('submit', function(e) {
+    e.preventDefault();
+    
+    // Captura os dados do formulário
+    const dados = {
+      titulo: document.getElementById('titulo').value,
+      categoria: document.getElementById('categoria').value,
+      tempo_publicacao: document.getElementById('tempo_publicacao').value,
+      imagem_url: document.getElementById('imagem_url').value,
+      conteudo: document.getElementById('conteudo').value,
+      created_at: new Date().toISOString()
+    };
+    
+    // Transforma em texto JSON de forma limpa
+    const jsonString = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(dados, null, 2));
+    
+    // Cria um link temporário para descarregar o ficheiro sozinho
+    const downloadAnchor = document.createElement('a');
+    // Cria um nome limpo baseado no título
+    const nomeFicheiro = "noticia-" + Math.floor(Math.random() * 10000) + ".json";
+    
+    downloadAnchor.setAttribute("href", jsonString);
+    downloadAnchor.setAttribute("download", nomeFicheiro);
+    document.body.appendChild(downloadAnchor);
+    downloadAnchor.click();
+    downloadAnchor.remove();
+    
+    // Mostra a caixa de sucesso verde
+    document.getElementById('msg-sucesso').style.display = 'block';
+    
+    // Limpa o formulário para a próxima escrita
+    document.getElementById('form-noticia-direto').reset();
+    
+    // Sobe o ecrã suavemente
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
+</script>
+
+</body>
+</html>
