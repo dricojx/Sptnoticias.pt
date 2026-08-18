@@ -5,23 +5,30 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Painel de Edição Central — SPT</title>
   
-  
+  <!-- 1. Script de Login Seguro -->
+  </script>
+
+  <!-- Estilos oficiais do Decap CDN (Aceite pela Vercel) -->
+  <link rel="stylesheet" href="https://jsdelivr.net" />
+
+  <script>
+    // Ativa a criação manual antes do programa iniciar
+    window.CMS_MANUAL_INIT = true;
   </script>
 </head>
 <body>
 
-  <!-- 2. O programa principal do painel visual -->
-  <script src="https://unpkg.com@^3.0.0/dist/decap-cms.js"></script>
+  <!-- Contentor obrigatório -->
+  <div id="nc-root"></div>
+
+  <!-- 2. MUDADO: Script oficial vindo da CDN estável que a Vercel não bloqueia -->
+  <script src="https://jsdelivr.net"></script>
 
   <script>
-    // 3. Ativa a criação manual do painel no navegador
-    window.CMS_MANUAL_INIT = true;
-
-    // 4. Injeta as configurações sem misturar chaves complicadas
     window.CMS.init({
       config: {
         backend: {
-          name: "git-gateway", // Método oficial e seguro para sites estáticos
+          name: "git-gateway",
           branch: "main"
         },
         media_folder: "spt_site/imagens",
