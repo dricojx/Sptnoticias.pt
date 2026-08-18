@@ -4,9 +4,36 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Painel de Edição Central — SPT</title>
-  <!-- Este script carrega o painel visual completo sem crashar -->
+  <!-- Script oficial do Decap CMS -->
   <script src="https://unpkg.com@^3.0.0/dist/decap-cms.js"></script>
 </head>
 <body>
+  <script>
+    // ESTE TRUQUE AVANÇADO DIZ AO DECAP EXATAMENTE ONDE ESTÁ O TEU CONFIG.YML
+    // ISSO EVITA QUE A TELA FIQUE BRANCA POR NÃO ACHAR A CONFIGURAÇÃO
+    window.CMS_CONFIG = {
+      backend: {
+        name: "github",
+        repo: "dricojx/Sptnoticias.pt",
+        branch: "main"
+      },
+      media_folder: "spt_site/imagens",
+      public_folder: "imagens",
+      collections: [{
+        name: "noticias",
+        label: "Notícias SPT",
+        folder: "spt_site/conteudo/noticias",
+        create: true,
+        slug: "{{year}}-{{month}}-{{day}}-{{slug}}",
+        fields: [
+          { label: "Título da Notícia", name: "title", widget: "string" },
+          { label: "Categoria", name: "categoria", widget: "select", options: ["País", "Mundo", "Desporto", "Cultura", "Tecnologia"] },
+          { label: "Hora de Exibição", name: "tempo_publicacao", widget: "string", default: "Hoje · 12:00" },
+          { label: "Imagem de Destaque", name: "imagem_url", widget: "image" },
+          { label: "Corpo da Notícia", name: "body", widget: "markdown" }
+        ]
+      }]
+    };
+  </script>
 </body>
 </html>
